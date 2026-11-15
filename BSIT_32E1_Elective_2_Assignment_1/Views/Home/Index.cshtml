@@ -1,0 +1,36 @@
+﻿@model List<BSIT_32E1_Elective_2_Assignment_1.Models.QuizQuestion>
+
+@{
+    ViewData["Title"] = "BSIT 32E1 - Elective 2 Assignment 1";
+}
+
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <h1 class="display-6 fw-bold">BSIT 32E1 - Elective 2 Assignment 1</h1>
+        <p class="text-muted">SSR/MVC vs. Web API Architecture Quiz & Answers</p>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-dark text-white fw-semibold">
+                Question @item.Number
+            </div>
+            <div class="card-body">
+                <p class="card-title fs-5 fw-semibold mb-3">@item.Question</p>
+                <ul class="list-group mb-3">
+                    @foreach (var option in item.Options)
+                    {
+                        bool isCorrect = option == item.CorrectAnswer;
+                        <li class="list-group-item @(isCorrect ? "list-group-item-success fw-bold" : "")">
+                            @option
+                        </li>
+                    }
+                </ul>
+                <div class="alert alert-success mb-0">
+                    <strong>Correct Answer:</strong> @item.CorrectAnswer
+                </div>
+            </div>
+        </div>
+    }
+</div>
